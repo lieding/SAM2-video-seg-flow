@@ -1,16 +1,16 @@
 import yaml
-from .sam2.modeling.sam2_base import SAM2Base
-from .sam2.modeling.backbones.image_encoder import ImageEncoder
-from .sam2.modeling.backbones.hieradet import Hiera
-from .sam2.modeling.backbones.image_encoder import FpnNeck
-from .sam2.modeling.position_encoding import PositionEmbeddingSine
-from .sam2.modeling.memory_attention import MemoryAttention, MemoryAttentionLayer
-from .sam2.modeling.sam.transformer import RoPEAttention
-from .sam2.modeling.memory_encoder import MemoryEncoder, MaskDownSampler, Fuser, CXBlock
+from sam2.modeling.sam2_base import SAM2Base
+from sam2.modeling.backbones.image_encoder import ImageEncoder
+from sam2.modeling.backbones.hieradet import Hiera
+from sam2.modeling.backbones.image_encoder import FpnNeck
+from sam2.modeling.position_encoding import PositionEmbeddingSine
+from sam2.modeling.memory_attention import MemoryAttention, MemoryAttentionLayer
+from sam2.modeling.sam.transformer import RoPEAttention
+from sam2.modeling.memory_encoder import MemoryEncoder, MaskDownSampler, Fuser, CXBlock
 
-from .sam2.sam2_image_predictor import SAM2ImagePredictor
-from .sam2.sam2_video_predictor import SAM2VideoPredictor
-from .sam2.automatic_mask_generator import SAM2AutomaticMaskGenerator
+from sam2.sam2_image_predictor import SAM2ImagePredictor
+from sam2.sam2_video_predictor import SAM2VideoPredictor
+from sam2.automatic_mask_generator import SAM2AutomaticMaskGenerator
 from comfy_utils import load_torch_file
 
 def load_model(model_path, model_cfg_path, segmentor, dtype, device):

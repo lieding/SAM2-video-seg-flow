@@ -10,7 +10,7 @@ from contextlib import nullcontext
 
 from video_utils import LoadVideoPath
 
-from .load_model import load_model
+from load_model import load_model
 
 script_directory = os.path.dirname(os.path.abspath(__file__))
 
