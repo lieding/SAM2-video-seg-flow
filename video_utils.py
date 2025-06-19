@@ -436,12 +436,12 @@ of loaded frames, i.e (8,1,True)
 """
 nodes = {}
 if not hasattr(nodes, 'VHSLoadFormats'):
-    nodes.VHSLoadFormats = {} # type: ignore
+    nodes["VHSLoadFormats"] = {}
 
 def get_format(format):
     if format in VHSLoadFormats:
         return VHSLoadFormats[format]
-    return nodes.VHSLoadFormats.get(format, {}) # type: ignore
+    return nodes["VHSLoadFormats"].get(format, {})
 
 
 def load_video(meta_batch=None, unique_id=None, memory_limit_mb=None, vae=None,
