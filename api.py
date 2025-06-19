@@ -310,7 +310,7 @@ if __name__ == "__main__":
     loaded = video_loader.load_video(
         video="input.mp4", frame_load_cap=0, select_every_nth=3,
         force_rate=0, custom_width=0, custom_height=0, skip_first_frames=0
-    )[0]["samples"]
+    )[0]
     segmentation = Sam2Segmentation()
     coordinates_positive = [{"x": 312, "y": 593}]
     coordinates_negative = [{"x": 245, "y": 805}]
