@@ -303,7 +303,7 @@ class Sam2Segmentation:
         mask_tensor = torch.stack(out_list, dim=0).cpu().float()
         return (mask_tensor,)
 
-model = loadmodel("sam2.1_hiera_base_plus.safetensors", "video", "cuda", "bf16")[0]["model"]
+model = loadmodel("sam2.1_hiera_base_plus.safetensors", "video", "cuda", "bf16")[0]
 
 if __name__ == "__main__":
     video_loader = LoadVideoPath()
