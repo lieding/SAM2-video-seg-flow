@@ -1,0 +1,11 @@
+imageio-ffmpeg
+pillow
+numpy<2
+tqdm
+pyaml
+torch==2.3
+torchvision
+safetensors
+opencv-python
+psutil
+huggingface-hub
