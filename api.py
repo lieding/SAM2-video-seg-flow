@@ -314,7 +314,8 @@ if __name__ == "__main__":
     segmentation = Sam2Segmentation()
     coordinates_positive = [{"x": 312, "y": 593}]
     coordinates_negative = [{"x": 245, "y": 805}]
-    mask = segmentation.segment(loaded, model, True, coordinates_positive=coordinates_positive, coordinates_negative=coordinates_negative)[0]
+    mask = segmentation.segment(
+        loaded, model, True, coordinates_positive=json.dumps(coordinates_positive), coordinates_negative=json.dumps(coordinates_negative))[0]
     preview = PreviewAnimation()
     merged = preview.preview(images=loaded, masks=mask)["ui"]["images"]
     print(merged)
