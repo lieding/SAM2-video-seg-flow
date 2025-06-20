@@ -1,5 +1,6 @@
 imageio-ffmpeg
 pillow
+scipy
 numpy<2
 tqdm
 pyaml

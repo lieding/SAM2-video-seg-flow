@@ -1,3 +1,4 @@
+from grow_mask import GrowMaskWithBlur, MixColorByMask, convert_mask_to_image
 from preview_animation import PreviewAnimation
 import torch
 from torch.functional import F
@@ -308,7 +309,7 @@ model = loadmodel("sam2.1_hiera_base_plus.safetensors", "video", "cuda", "bf16")
 if __name__ == "__main__":
     video_loader = LoadVideoPath()
     loaded = video_loader.load_video(
-        video="input.mp4", frame_load_cap=0, select_every_nth=3,
+        video="input.mp4", frame_load_cap=0, select_every_nth=2,
         force_rate=0, custom_width=0, custom_height=0, skip_first_frames=0
     )[0]
     segmentation = Sam2Segmentation()
@@ -316,6 +317,11 @@ if __name__ == "__main__":
     coordinates_negative = [{"x": 245, "y": 805}]
     mask = segmentation.segment(
         loaded, model, True, coordinates_positive=json.dumps(coordinates_positive), coordinates_negative=json.dumps(coordinates_negative))[0]
-    preview = PreviewAnimation()
-    merged = preview.preview(images=loaded, masks=mask, fps=10.0)["ui"]["images"]
-    print(merged)
+    mask_grow = GrowMaskWithBlur()
+    growed_mask = mask_grow.expand_mask(
+        mask, 10, True, False, 1.0, 0.0, 1.0, 1.0, True
+    )[0]
+    converted_mask = convert_mask_to_image(growed_mask)
+    mix_color = MixColorByMask()
+    mixed = mix_color.mix(loaded, r=127, g=127, b=127, mask=converted_mask)[0]
+    print(mixed)

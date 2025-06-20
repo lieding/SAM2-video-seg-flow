@@ -6,6 +6,8 @@ import shutil
 import subprocess
 import time
 from typing import Mapping
+import execution
+import uuid
 from venv import logger
 from comfy_utils import ProgressBar, common_upscale
 import torch
@@ -87,7 +89,17 @@ else:
         else:
             ffmpeg_path = max(ffmpeg_paths, key=ffmpeg_suitability)
 
+def get_ffmpeg_path():
+    return ffmpeg_path
 
+class PromptServer:
+    number = 0
+    
+    def __init__(self):
+        PromptServer.instance = self
+        execution.PromptQueue(self)
+
+requeue_guard = [None, 0, 0, {}]
 
 def target_size(width, height, custom_width, custom_height, downscale_ratio=8) -> tuple[int, int]:
     if downscale_ratio is None:
