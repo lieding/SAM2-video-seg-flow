@@ -6,7 +6,6 @@ import shutil
 import subprocess
 import time
 from typing import Mapping
-import execution
 import uuid
 from venv import logger
 from comfy_utils import ProgressBar, common_upscale
