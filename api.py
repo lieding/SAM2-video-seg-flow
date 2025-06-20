@@ -317,5 +317,5 @@ if __name__ == "__main__":
     mask = segmentation.segment(
         loaded, model, True, coordinates_positive=json.dumps(coordinates_positive), coordinates_negative=json.dumps(coordinates_negative))[0]
     preview = PreviewAnimation()
-    merged = preview.preview(images=loaded, masks=mask)["ui"]["images"]
+    merged = preview.preview(images=loaded, masks=mask, fps=10.0)["ui"]["images"]
     print(merged)

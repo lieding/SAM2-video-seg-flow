@@ -57,7 +57,7 @@ def get_save_image_path(filename_prefix: str, output_dir: str, image_width=0, im
 
 class PreviewAnimation:
     def __init__(self):
-        self.output_dir = "./output"
+        self.output_dir = os.path.abspath("./output")
         self.type = "temp"
         self.prefix_append = "_temp_" + ''.join(random.choice("abcdefghijklmnopqrstupvxyz") for x in range(5))
         self.compress_level = 1
