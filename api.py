@@ -8,7 +8,7 @@ import json
 from comfy_utils import ProgressBar, common_upscale, get_autocast_device, is_device_mps, unet_offload_device
 from tqdm import tqdm
 from contextlib import nullcontext
-
+from safetensors.torch import save_file
 from video_utils import LoadVideoPath
 
 from load_model import load_model
@@ -321,7 +321,8 @@ if __name__ == "__main__":
     growed_mask = mask_grow.expand_mask(
         mask, 10, True, False, 1.0, 0.0, 1.0, 1.0, True
     )[0]
-    converted_mask = convert_mask_to_image(growed_mask)
-    mix_color = MixColorByMask()
-    mixed = mix_color.mix(loaded, r=127, g=127, b=127, mask=converted_mask)[0]
-    print(mixed)
+    save_file(growed_mask, "grow_mask.safetensors")
+    # converted_mask = convert_mask_to_image(growed_mask)
+    #mix_color = MixColorByMask()
+    #mixed = mix_color.mix(loaded, r=127, g=127, b=127, mask=converted_mask)[0]
+    #print(mixed)
